@@ -46,7 +46,7 @@
               </p>
               <p class="mb-2" v-html="syntax"></p>
               <div
-               style="min-width: 200px; height:40px; line-height:40px;"
+               style="min-width: 150px; height:40px; line-height:40px;"
                 class="bg-dark text-center text-white ml-5 w-25 rounded"
               >
                 <p class>
@@ -71,7 +71,7 @@
               </p>
               <p class="mb-2" v-html="syntax"></p>
               <div
-                style="min-width: 200px; height:40px; line-height:40px;"
+                style="min-width: 150px; height:40px; line-height:40px;"
                 class="bg-dark text-center text-white ml-5 w-25 rounded"
               >
                 <p class>
@@ -93,7 +93,7 @@
 
           <div class="row border border-dark rounded mb-5 mr-2 ml-2">
             <div class="col-12">
-              <p class="pl-5 mt-3">
+              <p class="mt-3">
                 <b>Conditional rendering</b> as a term describes the ability to render different UI markup based on certain conditions.
               </p>
               <p>These are the directives:</p>

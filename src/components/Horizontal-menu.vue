@@ -1,7 +1,7 @@
 <template>
   <div class="">
               
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark rounded mt-3">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark rounded mt-3 p-0">
             <!-- <a href="#" class="navbar-brand">Menu</a> -->
             
             <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">

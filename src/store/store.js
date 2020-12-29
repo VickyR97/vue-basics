@@ -5,11 +5,33 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
     state:{
-        Example: 'With Vuex'
+        Heading: 'State Management Example',
+        links: [
+            'www.google.com',
+            'www.youtube.com',
+            'www..gmail.com'
+        ]
+        
     },
     getters:{
-        getterDataModification: state =>{
-            return state.Example + '\t' +'and Getters modification'
+        linksCount: state =>{
+            return state.links.length
+        }
+    },
+    mutations:{
+        ADD_LINK: (state, link) =>{
+            if(link !== ''){
+                state.links.push(link)
+            }
+            
+        },
+        REMOVE_LINK: (state, link) =>{
+            state.links.splice(link,1)
+        }
+    },
+    actions:{
+        removelink: (context, link) =>{
+            context.commit("REMOVE_LINK", link)
         }
     }
 })
