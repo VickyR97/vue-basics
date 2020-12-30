@@ -10,7 +10,8 @@ export const store = new Vuex.Store({
             'www.google.com',
             'www.youtube.com',
             'www..gmail.com'
-        ]
+        ],
+        isLoading: false
         
     },
     getters:{

@@ -14,6 +14,7 @@
                     <li class="nav-item pr-4 pl-4 pt-2 pb-2 bg-dark font-weight-bold"> <router-link class="nav-link" to='/router'> Router</router-link> </li>
                     <li class="nav-item pr-4 pl-4 pt-2 pb-2 bg-dark font-weight-bold"> <router-link class="nav-link" to='/hook'> Hooks</router-link> </li>
                     <li class="nav-item pr-4 pl-4 pt-2 pb-2 bg-dark font-weight-bold"> <router-link class="nav-link" to='/vuex'> Vuex</router-link> </li>
+                    <li class="nav-item pr-4 pl-4 pt-2 pb-2 bg-dark font-weight-bold"> <router-link class="nav-link" to='/analytics'> Analytics</router-link> </li>
                 </ul>
 
             </div>
