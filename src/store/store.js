@@ -11,7 +11,9 @@ export const store = new Vuex.Store({
             'www.youtube.com',
             'www..gmail.com'
         ],
-        isLoading: false
+        isLoading: false,
+        mutationCount: 0,
+        actionCount: 0
         
     },
     getters:{
@@ -28,11 +30,26 @@ export const store = new Vuex.Store({
         },
         REMOVE_LINK: (state, link) =>{
             state.links.splice(link,1)
+        },
+        MUTATION_COUNT_INCREMENT:(state) =>{
+            // setTimeout(()=>{
+            //     state.mutationCount +=1;
+            // },3000)
+            state.mutationCount +=1;
+        },
+        ACTION_COUNT_INCREMENT:(state) =>{
+            state.actionCount +=1;
         }
     },
     actions:{
         removelink: (context, link) =>{
             context.commit("REMOVE_LINK", link)
+        },
+        actionIncrement:(context) =>{
+            // setTimeout(()=>{
+            //  context.commit("ACTION_COUNT_INCREMENT")
+            // },3000)
+            context.commit("ACTION_COUNT_INCREMENT")
         }
     }
 })
