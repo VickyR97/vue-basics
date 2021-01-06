@@ -76,15 +76,18 @@
                     <p class="mt-5 mb-2"><b>Example</b></p>
                     <div class="row">
                         <div class="col-6 text-center">
-                            <b>Increment via mutation</b>
+                            <b>Increment via Mutations</b>
                             <p class="display-4">{{mutationCount}}</p>
                             <p><button @click="MUTATION_COUNT_INCREMENT" class="btn btn-dark">Increment</button></p>
                           </div>
                         <div class="col-6 text-center">
-                            <b>Increment via Action</b>
+                            <b>Increment via Actions</b>
                             <p class="display-4">{{actionCount}}</p>
                             <p><button @click="actionIncrement" class="btn btn-dark">Increment</button></p>
                           </div>
+                          <p class="mt-2">
+                        <small class="mt-2 ml-3" v-html="mutationsVsActionsReference"></small>
+                    </p>
                     </div>
                     
 
@@ -124,7 +127,9 @@ export default {
               "action can commit more than 1 mutation at a time, it just implements the business logic, it doesn't care about data changing (which manage by mutation)"
 
             ],
-      mutationsVsActionsNote: '<b>Important:</b> We Shouldn’t put asynchronous logic inside the <b>mutation</b>.'      
+      mutationsVsActionsNote: '<b>Important:</b> We Shouldn’t put asynchronous logic inside the <b>mutation</b>.',
+      mutationsVsActionsReference:
+        'For your reference <a target="_blank" href="https://www.youtube.com/watch?v=arhCOcxIUo4&t=468s"> The Net Ninja </a>'      
     };
   },
   computed: {

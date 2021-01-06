@@ -4,7 +4,8 @@ import Directives from '../components/vue-directives.vue'
 import  Route  from "../components/Router.vue";
 import Hook from "../components/Hooks.vue";
 import vuexEg from "../components/vuex-example.vue";
-import Analytics from "../components/Analytics.vue"
+import Analytics from "../components/Analytics.vue";
+import API_tryouts from "../components/API-tryouts.vue";
 
 Vue.use(VueRouter)
 
@@ -16,6 +17,7 @@ export const router = new VueRouter({
         {path: '/hook', component: Hook},
         {path: '/vuex', component: vuexEg},
         {path: '/analytics', component: Analytics},
+        {path: '/apitryouts', component: API_tryouts},
     ],
     mode: 'history'
   })

@@ -33,12 +33,15 @@ export const store = new Vuex.Store({
         },
         MUTATION_COUNT_INCREMENT:(state) =>{
             // setTimeout(()=>{
-            //     state.mutationCount +=1;
+            //     state.mutationCount +=2;
             // },3000)
             state.mutationCount +=1;
         },
         ACTION_COUNT_INCREMENT:(state) =>{
             state.actionCount +=1;
+        },
+        ACTION_COUNT_INCREMENT2:(state) =>{
+            state.actionCount +=2;
         }
     },
     actions:{
@@ -47,7 +50,7 @@ export const store = new Vuex.Store({
         },
         actionIncrement:(context) =>{
             // setTimeout(()=>{
-            //  context.commit("ACTION_COUNT_INCREMENT")
+            // context.commit("ACTION_COUNT_INCREMENT2")
             // },3000)
             context.commit("ACTION_COUNT_INCREMENT")
         }
