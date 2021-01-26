@@ -1,15 +1,5 @@
 <template>
-  <div>
-    <Header />
-
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-3">
-          <Menu />
-        </div>
-
-
-        <div class="col-9">
+  <div>  
             <h4 class="font-weight-bold pt-2 ml-2">Analytics</h4> 
 
             <div class="row border border-dark rounded mb-5 mr-2 ml-2">
@@ -51,28 +41,17 @@
                 </div>
 
             </div>
-            </div>
-
-        
-        
-        </div> 
-      
-      </div>
-
-  </div>
+            </div>     
   </div>
 </template>
 
 <script>
-import Header from "./Header";
-import Menu from "./Horizontal-menu";
 import {mapState, mapGetters} from "vuex"
 
 
 export default {
   components: {
-        Header,
-        Menu
+        
   },
   computed:{
     ...mapState([

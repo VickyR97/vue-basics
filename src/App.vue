@@ -1,18 +1,32 @@
 <template>
   <div>
-    <!-- <directives />  -->
-   <router-view></router-view>
+      <Header />
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-3">
+          <Menu />
+        </div>
+        <div class="col-9">
+            <router-view></router-view>
+        </div>
+
+      </div>
+    </div>
+
+   
   </div>
 </template>
 
 <script>
-// import directives from "./components/vue-directives"
+import Header from "./components/Header";
+import Menu from "./components/Horizontal-menu";
 
 
 export default {
   
   components: {
-    //  directives
+    Header,
+    Menu
   },
   data(){
     return{

@@ -32,10 +32,10 @@ export const store = new Vuex.Store({
             state.links.splice(link,1)
         },
         MUTATION_COUNT_INCREMENT:(state) =>{
-            // setTimeout(()=>{
-            //     state.mutationCount +=2;
-            // },3000)
-            state.mutationCount +=1;
+            setTimeout(()=>{
+                state.mutationCount +=2;
+            },3000)
+            // state.mutationCount +=1;
         },
         ACTION_COUNT_INCREMENT:(state) =>{
             state.actionCount +=1;
@@ -49,10 +49,10 @@ export const store = new Vuex.Store({
             context.commit("REMOVE_LINK", link)
         },
         actionIncrement:(context) =>{
-            // setTimeout(()=>{
-            // context.commit("ACTION_COUNT_INCREMENT2")
-            // },3000)
-            context.commit("ACTION_COUNT_INCREMENT")
+            setTimeout(()=>{
+            context.commit("ACTION_COUNT_INCREMENT2")
+            },3000)
+            // context.commit("ACTION_COUNT_INCREMENT")
         }
     }
 })

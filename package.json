@@ -12,6 +12,7 @@
     "@jeremyhamm/vue-slider": "^0.2.0",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "mongoose": "^5.11.10",
     "vue": "^2.6.11",
     "vue-router": "^3.4.9",
     "vue-sidebar-menu": "^4.7.4",
