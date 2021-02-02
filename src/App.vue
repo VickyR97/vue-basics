@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <!-- <div>
       <Header />
     <div class="container-fluid">
       <div class="row">
@@ -14,23 +14,28 @@
     </div>
 
    
+  </div> -->
+  <div>
+    <component :is="this.$route.meta.layout || 'div'">
+      <router-view />
+    </component>  
   </div>
 </template>
 
 <script>
-import Header from "./components/Header";
-import Menu from "./components/Horizontal-menu";
+// import Header from "./components/Header";
+// import Menu from "./components/Horizontal-menu";
 
 
 export default {
   
   components: {
-    Header,
-    Menu
+    // Header,
+    // Menu
   },
   data(){
     return{
-     
+      layout: "div"
     }
   }
 }

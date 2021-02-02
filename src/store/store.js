@@ -13,7 +13,9 @@ export const store = new Vuex.Store({
         ],
         isLoading: false,
         mutationCount: 0,
-        actionCount: 0
+        actionCount: 0,
+        isAuthenticated: false,
+        username: ''
         
     },
     getters:{
@@ -42,6 +44,12 @@ export const store = new Vuex.Store({
         },
         ACTION_COUNT_INCREMENT2:(state) =>{
             state.actionCount +=2;
+        },
+        SET_AUTHENTICATION:(state, status) =>{
+            state.isAuthenticated = status
+        },
+        SET_USERNAME:(state)=>{
+            state.username = localStorage.getItem('email')
         }
     },
     actions:{

@@ -10,7 +10,7 @@
 
             <div class="collapse navbar-collapse" id="navbarMenu">
                 <ul class="navbar-nav nav flex-column">
-                    <li class="nav-item pr-4 pl-4 pt-2 pb-2 bg-dark font-weight-bold"> <router-link class="nav-link" to='/'> Directives</router-link> </li>
+                    <li class="nav-item pr-4 pl-4 pt-2 pb-2 bg-dark font-weight-bold"> <router-link class="nav-link" to='/directives'> Directives</router-link> </li>
                     <li class="nav-item pr-4 pl-4 pt-2 pb-2 bg-dark font-weight-bold"> <router-link class="nav-link" to='/router'> Router</router-link> </li>
                     <li class="nav-item pr-4 pl-4 pt-2 pb-2 bg-dark font-weight-bold"> <router-link class="nav-link" to='/hook'> Hooks</router-link> </li>
                     <li class="nav-item pr-4 pl-4 pt-2 pb-2 bg-dark font-weight-bold"> <router-link class="nav-link" to='/vuex'> Vuex</router-link> </li>
