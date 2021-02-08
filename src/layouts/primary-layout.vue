@@ -1,6 +1,8 @@
 <template>
    <div>
-      <Header />
+      <Header
+      usernameBlock
+      />
     <div class="container-fluid">
       <div class="row">
         <div class="col-3">

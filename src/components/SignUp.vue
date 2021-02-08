@@ -6,12 +6,25 @@
                 :can-cancel="false" 
                 :is-full-page="true"></Loading>
 
-                <h2 class="font-weight-bold mb-0 pt-3">Sign in</h2>
-                <p><small><strong> To continue, Sign in to VDoc </strong> </small> </p>
+                <h2 class="font-weight-bold mb-0 pt-3">Sign Up</h2>
+                <p><small><strong> Create your account in VDoc </strong> </small> </p>
             </div>
         <div class="p-5">
 
             <b-form>
+                <!-- Username -->
+                <b-form-group
+                class="mb-4"
+                label="Username"
+                >
+                <b-form-input v-model="username" trim class="mb-2 mr-sm-2 mb-sm-0"
+                :class="{'is-invalid' : submitStatus && $v.username.$invalid, 'is-valid' : !$v.username.$invalid }"
+                ></b-form-input>
+                <b-form-valid-feedback>Username valid</b-form-valid-feedback>
+                   <b-form-invalid-feedback v-if=" submitStatus && !$v.username.alpha">Username must contains only characters!</b-form-invalid-feedback>
+                   <b-form-invalid-feedback v-if=" submitStatus && !$v.username.required">Username required</b-form-invalid-feedback>
+                </b-form-group>
+
                 <!-- Email -->  
                 <b-form-group
                 class="mb-4"
@@ -22,8 +35,8 @@
                 :class="{'is-invalid' : submitStatus && $v.email.$invalid, 'is-valid' : !$v.email.$invalid }"
                 ></b-form-input>
                 <b-form-valid-feedback>Email valid</b-form-valid-feedback>
-                   <b-form-invalid-feedback v-if=" submitStatus && !$v.email.required ">Email required</b-form-invalid-feedback>
-                   <b-form-invalid-feedback v-if=" submitStatus && !$v.email.email ">Please enter valid email</b-form-invalid-feedback>
+                   <b-form-invalid-feedback v-if=" submitStatus && !$v.email.required ">Email required!</b-form-invalid-feedback>
+                   <b-form-invalid-feedback v-if=" submitStatus && !$v.email.email">Please enter valid email</b-form-invalid-feedback>
                 </b-form-group>
 
                 <!-- Password -->
@@ -37,13 +50,26 @@
                    <b-form-invalid-feedback v-if="submitStatus && !$v.password.required ">Password required</b-form-invalid-feedback>
                 </b-form-group>
 
+                <!-- re-Password -->
+                <b-form-group
+                label="Confirm Password"
+                class="mb-4"
+                >
+                <b-form-input type="password" v-model="repassword" trim class="mb-2 mr-sm-2 mb-sm-0"
+                :class="{'is-invalid' : submitStatus && $v.repassword.$invalid ,'is-valid' : !$v.repassword.$invalid }"
+                ></b-form-input>
+                <b-form-valid-feedback>Password matched</b-form-valid-feedback>
+                   <b-form-invalid-feedback v-if="submitStatus && !$v.repassword.required ">Confirm password required</b-form-invalid-feedback>
+                   <b-form-invalid-feedback v-if="submitStatus && !$v.repassword.sameAs">Password didn't matched</b-form-invalid-feedback>
+                </b-form-group>
 
                 <div class="mt-5">
-                    <b-button @click="login" size="lg" block variant="dark font-weight-bold">Sign in</b-button>
+                    <b-button @click="signup" size="lg" block variant="dark font-weight-bold">Sign Up</b-button>
                 </div>
+                
                 <div class="text-center mt-4">
-                    If you dont have account? 
-                    <router-link :to="{name: 'signup'}">Create Account</router-link>
+                    Already registered 
+                    <router-link :to="{name: 'login'}">sign in?</router-link>
                 </div>
             </b-form>
         </div>
@@ -52,15 +78,17 @@
 </template>
 
 <script>
-import { required, email } from 'vuelidate/lib/validators'
+import { required, email, alpha, sameAs } from 'vuelidate/lib/validators'
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
 
 export default {
     data(){
         return{
+            username: '',
             email: '',
             password: '',
+            repassword: '',
             submitStatus: false,
             success: false,
             isLoading: false
@@ -76,6 +104,14 @@ export default {
         },
         password:{
             required
+        },
+        username:{
+            alpha,
+            required
+        },
+        repassword:{
+            required,
+            sameAsPassword: sameAs('password')
         }
     },
     async created(){
@@ -92,24 +128,18 @@ export default {
         }
     },
     methods:{
-        async login(){
+        async signup(){
             this.submitStatus = true
              this.$v.$touch()
             if(this.$v.$anyError){
                 this.success = false
+                return 0;
             }
             else{
-                await localStorage.setItem('email', this.email)
-                if(localStorage.getItem('email')){
-                    this.$store.commit("SET_AUTHENTICATION", true)
-                    await this.$store.commit("SET_USERNAME")
-                    this.isLoading = true
-                    setTimeout(()=>{
-                        this.$router.replace({name:"directives"})    
-                    }, 2000)
-                }else{
-                    console.log('login error')
-                } 
+               this.isLoading = true
+               await setTimeout(()=>{
+                this.$router.replace({name:"login"})
+               }, 2000)    
             }
         }
     }

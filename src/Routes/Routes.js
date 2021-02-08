@@ -7,6 +7,7 @@ import vuexEg from "../components/vuex-example.vue";
 import Analytics from "../components/Analytics.vue";
 import API_tryouts from "../components/API-tryouts.vue";
 import login from "../components/login.vue";
+import  signup  from "../components/SignUp.vue";
 import primaryLayout from "../layouts/primary-layout.vue";
 // import defaultLayout from "../layouts/default-layout.vue";
 import AuthLayout from "../layouts/AuthenticationLayout.vue";
@@ -29,8 +30,16 @@ export const router = new VueRouter({
             }
         },
         {
-            path: '/login', 
+            path: '/login',
+            name: "login", 
             component: login,
+            meta:{ layout: AuthLayout }
+            // meta:{ layout: primaryLayout }
+        },
+        {
+            path: '/signup',
+            name: 'signup', 
+            component: signup,
             meta:{ layout: AuthLayout }
             // meta:{ layout: primaryLayout }
         },
