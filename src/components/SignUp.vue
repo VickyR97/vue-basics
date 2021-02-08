@@ -2,9 +2,9 @@
     <b-container class="border rounded-bottom p-0 mt-5">
 
             <div class="text-center bg-dark text-white rounded-top" style="height:100px; line-height:50px;">
-                <Loading :active.sync="isLoading" 
+                <!-- <Loading :active.sync="isLoading" 
                 :can-cancel="false" 
-                :is-full-page="true"></Loading>
+                :is-full-page="true"></Loading> -->
 
                 <h2 class="font-weight-bold mb-0 pt-3">Sign Up</h2>
                 <p><small><strong> Create your account in VDoc </strong> </small> </p>
@@ -79,8 +79,6 @@
 
 <script>
 import { required, email, alpha, sameAs } from 'vuelidate/lib/validators'
-import Loading from 'vue-loading-overlay';
-import 'vue-loading-overlay/dist/vue-loading.css';
 
 export default {
     data(){
@@ -95,7 +93,7 @@ export default {
         }
     },
     components:{
-        Loading
+        // Loading
     },
     validations:{
         email:{
@@ -136,9 +134,15 @@ export default {
                 return 0;
             }
             else{
-               this.isLoading = true
-               await setTimeout(()=>{
-                this.$router.replace({name:"login"})
+            //    this.isLoading = true
+                let loader = this.$loading.show({
+                    container: this.fullPage ? null : this.$refs.formContainer,
+                    canCancel: true,
+                    onCancel: this.onCancel,
+                    });
+                await setTimeout(()=>{
+                    loader.hide()
+                    this.$router.replace({name:"login"})
                }, 2000)    
             }
         }

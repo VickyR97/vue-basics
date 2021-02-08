@@ -1,7 +1,6 @@
 <template>
-    <div class="sticky-top d-flex justify-content-between bg-dark text-white align-items-center">
+    <!-- <div class="sticky-top d-flex justify-content-between bg-dark text-white align-items-center">
     <h1 class="pl-4 font-weight-bold pt-3 pb-3 m-0">VDoc</h1> 
-    <!-- <p class="pr-5 pt-3 pb-3 m-0">hai</p> -->
 
         <div class="dropdown pr-4 pt-3 pb-3 m-0 d-flex">
           <div v-if="notification">
@@ -27,6 +26,32 @@
           </div>
           
         </div>
+  </div> -->
+
+  <div>
+    <b-navbar toggleable="lg" type="dark" variant="dark">
+      <b-navbar-brand class="mt-1"><h2 class="font-weight-bold">VDoc</h2></b-navbar-brand>
+      <b-navbar-nav class="ml-auto">
+        
+        <div v-if="loginController" class="d-flex">
+            <router-link to="/login"><b-button class="ml-3 font-weight-bold">Sign in</b-button></router-link>
+            <router-link to="/signup"><b-button class="ml-3 font-weight-bold">Sign up</b-button></router-link>
+        </div>
+
+        <div v-if="notification">
+            <NotificationBell 
+            class="mr-4 mt-2 pt-1"  
+            iconColor="white" 
+            size="20" 
+            counterStyle="roundRectangle"
+            />
+        </div>
+          
+          <b-nav-item-dropdown class="ml-2" :text="$store.state.username" right>
+            <b-dropdown-item @click="logout">Logout</b-dropdown-item>
+          </b-nav-item-dropdown>
+      </b-navbar-nav>
+    </b-navbar>
   </div>
 
 </template>

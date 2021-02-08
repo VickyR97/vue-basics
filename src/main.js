@@ -6,8 +6,10 @@ import App from './App.vue'
 import { store } from "./store/store";
 import { router } from "./Routes/Routes";
 import Vuelidate from 'vuelidate'
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
 
-
+Vue.use(Loading);
 Vue.use(Vuelidate)
 Vue.config.productionTip = false
 
