@@ -1,20 +1,4 @@
 <template>
-  <!-- <div>
-      <Header />
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-3">
-          <Menu />
-        </div>
-        <div class="col-9">
-            <router-view></router-view>
-        </div>
-
-      </div>
-    </div>
-
-   
-  </div> -->
   <div>
     <component :is="this.$route.meta.layout || 'div'">
       <router-view />
@@ -23,20 +7,22 @@
 </template>
 
 <script>
-// import Header from "./components/Header";
-// import Menu from "./components/Horizontal-menu";
-
+import fire from './config/firebase'
 
 export default {
   
   components: {
-    // Header,
-    // Menu
   },
   data(){
     return{
-      layout: "div"
+      layout: "div",
+      user : {}
     }
+  },
+  async mounted(){
+     fire.auth().onAuthStateChanged(users =>{
+            this.user = {users}
+        })
   }
 }
 </script>

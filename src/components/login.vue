@@ -12,6 +12,7 @@
         <div class="p-5">
 
             <b-form>
+                <p class="text-danger" v-if="this.loginError.error">{{this.loginError.error.message}}</p>
                 <!-- Email -->  
                 <b-form-group
                 class="mb-4"
@@ -53,6 +54,7 @@
 
 <script>
 import { required, email } from 'vuelidate/lib/validators'
+import fire from "../config/firebase";
 
 export default {
     data(){
@@ -62,6 +64,7 @@ export default {
             submitStatus: false,
             success: false,
             // isLoading: false
+            loginError : {}
         }
     },
     components:{
@@ -89,31 +92,43 @@ export default {
         }
     },
     methods:{
-        async login(){
+        login(){
             this.submitStatus = true
              this.$v.$touch()
             if(this.$v.$anyError){
                 this.success = false
             }
             else{
-                await localStorage.setItem('email', this.email)
-                if(localStorage.getItem('email')){
-                    this.$store.commit("SET_AUTHENTICATION", true)
-                    await this.$store.commit("SET_USERNAME")
+                // await localStorage.setItem('email', this.email)
+                // if(localStorage.getItem('email')){
+                //     this.$store.commit("SET_AUTHENTICATION", true)
+                //     await this.$store.commit("SET_USERNAME")
                     // this.isLoading = true
+
                     // Loading State here
                     let loader = this.$loading.show({
                     container: this.fullPage ? null : this.$refs.formContainer,
                     canCancel: true,
                     onCancel: this.onCancel,
                     });
-                    setTimeout(()=>{
+
+                    //AUTHENTICATION
+                    fire.auth().signInWithEmailAndPassword(this.email, this.password)
+                    .then(() =>{
+                                loader.hide()
+                                this.$router.replace({name:"directives"})  
+                                // console.log("Logged in successfully...")
+                    })
+                    .catch(err =>{
                         loader.hide()
-                        this.$router.replace({name:"directives"})    
-                    }, 2000)
-                }else{
-                    console.log('login error')
-                } 
+                        this.loginError = {
+                            error : err
+                        }
+                    })                    
+
+                // }else{
+                //     console.log('login error')
+                // } 
             }
         }
     }

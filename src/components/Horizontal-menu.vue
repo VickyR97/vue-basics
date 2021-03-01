@@ -16,6 +16,7 @@
                     <li class="nav-item pr-4 pl-4 pt-2 pb-2 bg-dark font-weight-bold"> <router-link class="nav-link" to='/vuex'> Vuex</router-link> </li>
                     <li class="nav-item pr-4 pl-4 pt-2 pb-2 bg-dark font-weight-bold"> <router-link class="nav-link" to='/analytics'> Analytics</router-link> </li>
                     <li class="nav-item pr-4 pl-4 pt-2 pb-2 bg-dark font-weight-bold"> <router-link class="nav-link" to='/apitryouts'> API tryouts</router-link> </li>
+                    <li class="nav-item pr-4 pl-4 pt-2 pb-2 bg-dark font-weight-bold"> <router-link class="nav-link" to='/dynamicComponents'> Dynamic Components </router-link> </li>
                 </ul>
 
             </div>

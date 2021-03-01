@@ -47,7 +47,7 @@
             />
         </div>
           
-          <b-nav-item-dropdown class="ml-2" :text="$store.state.username" right>
+          <b-nav-item-dropdown class="ml-2" :text="this.user" right>
             <b-dropdown-item @click="logout">Logout</b-dropdown-item>
           </b-nav-item-dropdown>
       </b-navbar-nav>
@@ -57,6 +57,7 @@
 </template>
 <script>
 import NotificationBell from 'vue-notification-bell'
+import fire from '../config/firebase'
 
 export default {
   components:{
@@ -69,13 +70,27 @@ export default {
   },
    data(){
      return{
-       drawer: true
+       drawer: true,
+       user : ''
      }
+   },
+   mounted(){
+     fire.auth().onAuthStateChanged(users =>{
+            if(users){
+                console.log(users)
+                this.user = users.email
+            }
+        })
    },
    methods:{
      logout(){
-       localStorage.removeItem('email')
-       window.location.reload()
+       fire.auth().signOut()
+            .then(() =>{
+                this.$router.replace({name:"login"})
+            })
+            .catch(err =>{
+                console.log("Logout Error", err)
+            })
      }
    }
    

@@ -12,6 +12,8 @@
         <div class="p-5">
 
             <b-form>
+                <p class="text-danger" v-if="this.signUpError.error">{{this.signUpError.error.message}}</p>
+
                 <!-- Username -->
                 <b-form-group
                 class="mb-4"
@@ -79,6 +81,8 @@
 
 <script>
 import { required, email, alpha, sameAs } from 'vuelidate/lib/validators'
+import fire from "../config/firebase";
+
 
 export default {
     data(){
@@ -89,7 +93,9 @@ export default {
             repassword: '',
             submitStatus: false,
             success: false,
-            isLoading: false
+            isLoading: false,
+            signUpError : {}
+
         }
     },
     components:{
@@ -140,10 +146,23 @@ export default {
                     canCancel: true,
                     onCancel: this.onCancel,
                     });
-                await setTimeout(()=>{
-                    loader.hide()
-                    this.$router.replace({name:"login"})
-               }, 2000)    
+            //     await setTimeout(()=>{
+            //         loader.hide()
+            //         this.$router.replace({name:"login"})
+            //    }, 2000)    
+                fire.auth().createUserWithEmailAndPassword(this.email, this.password)
+                    .then(() =>{
+                                loader.hide()
+                                return this.$router.replace({name:"login"})    
+                                // console.log("Signed up successfully...")
+                    })
+                    .catch(err =>{
+                        // console.log("LOGIN-ERROR", err.message)
+                        loader.hide()
+                        this.signUpError = {
+                            error : err
+                        }
+                    })                   
             }
         }
     }

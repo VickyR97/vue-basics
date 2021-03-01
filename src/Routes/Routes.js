@@ -8,21 +8,33 @@ import Analytics from "../components/Analytics.vue";
 import API_tryouts from "../components/API-tryouts.vue";
 import login from "../components/login.vue";
 import  signup  from "../components/SignUp.vue";
+import  DynamicComponents  from "../components/DynamicComponents.vue";
 import primaryLayout from "../layouts/primary-layout.vue";
 // import defaultLayout from "../layouts/default-layout.vue";
 import AuthLayout from "../layouts/AuthenticationLayout.vue";
-import { store } from '../store/store';
+// import { store } from '../store/store';
+import fire from '../config/firebase'
+
 
 Vue.use(VueRouter)
 
-
+const isAuthenticated = () =>{
+    fire.auth().onAuthStateChanged(users =>{
+        if(users){
+            return true
+        }else{
+            return false;
+        }
+    })
+}
+ 
 export const router = new VueRouter({
     routes:[
         {
             path: '/',
             name: "initial", 
             beforeEnter:(to, from, next) =>{
-                if(store.state.isAuthenticated == false){
+                if(isAuthenticated){
                     next("/login")
                 }else{
                     next("/directives")
@@ -48,13 +60,13 @@ export const router = new VueRouter({
             name: 'directives',
             component: Directives,
             meta:{ layout: primaryLayout },
-            beforeEnter:(to, from, next) =>{
-                if(store.state.isAuthenticated == false){
-                    next("/login")
-                }else{
-                    next()
-                }
-            }
+            // beforeEnter:(to, from, next) =>{
+            //     if(isAuthenticated){
+            //         next("/login")
+            //     }else{
+            //         next()
+            //     }
+            // }
 
         },
         {
@@ -63,7 +75,7 @@ export const router = new VueRouter({
             component: Route,
             meta:{ layout: primaryLayout },
             beforeEnter:(to, from, next) =>{
-                if(store.state.isAuthenticated == false){
+                if(isAuthenticated == false){
                     next("/login")
                 }else{
                     next()
@@ -76,7 +88,7 @@ export const router = new VueRouter({
             component: Hook,
             meta:{ layout: primaryLayout },
             beforeEnter:(to, from, next) =>{
-                if(store.state.isAuthenticated == false){
+                if(isAuthenticated == false){
                     next("/login")
                 }else{
                     next()
@@ -89,7 +101,7 @@ export const router = new VueRouter({
             component: vuexEg,
             meta:{ layout: primaryLayout },
             beforeEnter:(to, from, next) =>{
-                if(store.state.isAuthenticated == false){
+                if(isAuthenticated == false){
                     next("/login")
                 }else{
                     next()
@@ -102,7 +114,7 @@ export const router = new VueRouter({
             component: Analytics,
             meta:{ layout: primaryLayout },
             beforeEnter:(to, from, next) =>{
-                if(store.state.isAuthenticated == false){
+                if(isAuthenticated == false){
                     next("/login")
                 }else{
                     next()
@@ -115,7 +127,20 @@ export const router = new VueRouter({
             component: API_tryouts,
             meta:{ layout: primaryLayout },
             beforeEnter:(to, from, next) =>{
-                if(store.state.isAuthenticated == false){
+                if(isAuthenticated == false){
+                    next("/login")
+                }else{
+                    next()
+                }
+            }
+        },
+        {
+            path: '/dynamicComponents',
+            name: 'dynamicComponents',
+            component: DynamicComponents,
+            meta:{ layout: primaryLayout },
+            beforeEnter:(to, from, next) =>{
+                if(isAuthenticated == false){
                     next("/login")
                 }else{
                     next()
